@@ -11,6 +11,7 @@ greeter = Agent(
     ),
     tools=[EchoTool],
     temperature=0.2,
+    model="gpt-3.5-turbo",
     examples=[{"role": "user", "content": "Test", "attachments": [], "metadata": {}},
               {"role": "assistant", "content": "Hello! You said:"}
     ],
@@ -23,6 +24,7 @@ responder = Agent(
     instructions="Whenever you get any text, echo it exactly using EchoTool",
     tools=[EchoTool],
     temperature=0.0,
+    model="gpt-3.5-turbo",
     examples=[{"role": "user", "content": "Test", "attachments": [], "metadata": {}},
               {"role": "assistant", "content": "You said: Test"}
     ],
@@ -41,6 +43,7 @@ summarizer = Agent(
     ),
     tools=[WordCountTool, EchoTool],
     temperature=0.2,
+    model="gpt-3.5-turbo",
     examples=[{"role": "user", "content": "This is a long text that needs summarization.", "attachments": [], "metadata": {}},
               {"role": "assistant", "content": "Summary: This is a long text that needs summarization.(word count: 8)", "attachments": [], "metadata": {}}
     ],

@@ -38,8 +38,7 @@
                         "$defs": {
                             "recipient": {
                                 "enum": [
-                                    "Responder",
-                                    "Summarizer"
+                                    "Responder"
                                 ],
                                 "title": "recipient",
                                 "type": "string"
@@ -48,7 +47,7 @@
                         "properties": {
                             "recipient": {
                                 "$ref": "#/$defs/recipient",
-                                "description": "Responder: repeats the questions back in verbatim\nSummarizer: Produce a one-sentence summary of the user's text and report word count.\n"
+                                "description": "Responder: repeats the questions back in verbatim\n"
                             },
                             "my_primary_instructions": {
                                 "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
@@ -154,7 +153,6 @@
                         "$defs": {
                             "recipient": {
                                 "enum": [
-                                    "Greeter",
                                     "Summarizer"
                                 ],
                                 "title": "recipient",
@@ -164,7 +162,7 @@
                         "properties": {
                             "recipient": {
                                 "$ref": "#/$defs/recipient",
-                                "description": "Greeter: greet the user warmly\nSummarizer: Produce a one-sentence summary of the user's text and report word count.\n"
+                                "description": "Summarizer: Produce a one-sentence summary of the user's text and report word count.\n"
                             },
                             "my_primary_instructions": {
                                 "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
@@ -291,8 +289,7 @@
                         "$defs": {
                             "recipient": {
                                 "enum": [
-                                    "Greeter",
-                                    "Responder"
+                                    "Greeter"
                                 ],
                                 "title": "recipient",
                                 "type": "string"
@@ -301,7 +298,7 @@
                         "properties": {
                             "recipient": {
                                 "$ref": "#/$defs/recipient",
-                                "description": "Greeter: greet the user warmly\nResponder: repeats the questions back in verbatim\n"
+                                "description": "Greeter: greet the user warmly\n"
                             },
                             "my_primary_instructions": {
                                 "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
