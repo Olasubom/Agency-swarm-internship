@@ -1,4 +1,4 @@
 .evn
 __pycache__
 .venv
-venvs
+venvs.env
