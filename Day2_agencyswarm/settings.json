@@ -2,8 +2,8 @@
     {
         "id": "asst_Lc0kOzCJFSY8wZn56vUNljkI",
         "created_at": 1754708801,
-        "description": "greet the user warmly",
-        "instructions": "When you receive a message, respond with 'Hello' and use the EchoTool to repeat the text",
+        "description": "Greet the user warmly then echo their text inline.",
+        "instructions": "When you receive a user's message, return ONE final plain-text response that includes a short greeting and the user's text. Use the EchoTool if you want, but make sure the final assistant response looks exactly like:\n  Hello! You said: <original user text>\nDo NOT return JSON or separate staged outputs.",
         "metadata": {},
         "model": "gpt-3.5-turbo",
         "name": "Greeter",
@@ -162,7 +162,7 @@
                         "properties": {
                             "recipient": {
                                 "$ref": "#/$defs/recipient",
-                                "description": "Summarizer: Produce a one-sentence summary of the user's text and report word count.\n"
+                                "description": "Summarizer: Produce a one-sentence summary and include word count using WordCountTool.\n"
                             },
                             "my_primary_instructions": {
                                 "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
@@ -232,8 +232,8 @@
     {
         "id": "asst_ZycEDWFbBohHYZKtfb3v8Ujx",
         "created_at": 1754708803,
-        "description": "Produce a one-sentence summary of the user's text and report word count.",
-        "instructions": "1) Read the user's message.\n2) Use WordCountTool to compute the number of words in the user's message.\n3) Produce a single-sentence summary (one short sentence) of the message.\n4) Output the summary followed by ' (Word count: N)'.\nIf useful, you may also use EchoTool to validate the input before summarizing.",
+        "description": "Produce a one-sentence summary and include word count using WordCountTool.",
+        "instructions": "Do these steps and return ONE plain-text sentence:\n1) Use WordCountTool with parameter text=<the user's message> to compute N.\n2) Produce a single short summary sentence of the user's message.\n3) Append ' (Word count: N)' to that one sentence.\nImportant: do NOT return JSON or separate outputs \u2014 the final assistant reply MUST be a single sentence that contains the number. Example: 'Short summary here. (Word count: 9)'.",
         "metadata": {},
         "model": "gpt-3.5-turbo",
         "name": "Summarizer",
@@ -298,7 +298,7 @@
                         "properties": {
                             "recipient": {
                                 "$ref": "#/$defs/recipient",
-                                "description": "Greeter: greet the user warmly\n"
+                                "description": "Greeter: Greet the user warmly then echo their text inline.\n"
                             },
                             "my_primary_instructions": {
                                 "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
