@@ -1,0 +1,11 @@
+## AGENTS OUTPUT
+
+$ C:/Users/DELL/Desktop/OLA/PROJECTS/Agency-swarm-internship/.venv/Scripts/python.exe c:/Users/DELL/Desktop/OLA/PROJECTS/Agency-swarm-internship/Day2_agencyswarm/run_swarm.py
+Swarm is running...Type 'exit' to stop.
+You: hello world
+Swarm: Hello! You said: hello world
+You: Tell me three facts about cats
+Swarm: Hello! You said: Tell me three facts about cats
+You: Summarize — this is a longer sentence to test word count
+Swarm: Hello! You said: Summarize — this is a longer sentence to test word count
+You: 
