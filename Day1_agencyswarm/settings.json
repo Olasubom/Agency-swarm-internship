@@ -5,7 +5,7 @@
         "description": "greet the user warmly",
         "instructions": "When you recive a message responde with 'Hello' and the use the EchoTool to repeat the text",
         "metadata": {},
-        "model": "gpt-4o",
+        "model": "gpt-3.5-turbo",
         "name": "Greeter",
         "object": "assistant",
         "tools": [
@@ -120,7 +120,7 @@
         "description": "repeats the questions back in verbatim",
         "instructions": "When ever you get any text echo it excatly using EchoTool",
         "metadata": {},
-        "model": "gpt-4o",
+        "model": "gpt-3.5-turbo",
         "name": "Responder",
         "object": "assistant",
         "tools": [

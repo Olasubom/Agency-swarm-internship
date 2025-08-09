@@ -5,7 +5,7 @@
         "description": "greet the user warmly",
         "instructions": "When you receive a message, respond with 'Hello' and use the EchoTool to repeat the text",
         "metadata": {},
-        "model": "gpt-4o",
+        "model": "gpt-3.5-turbo",
         "name": "Greeter",
         "object": "assistant",
         "tools": [
@@ -121,7 +121,7 @@
         "description": "repeats the questions back in verbatim",
         "instructions": "Whenever you get any text, echo it exactly using EchoTool",
         "metadata": {},
-        "model": "gpt-4o",
+        "model": "gpt-3.5-turbo",
         "name": "Responder",
         "object": "assistant",
         "tools": [
@@ -237,7 +237,7 @@
         "description": "Produce a one-sentence summary of the user's text and report word count.",
         "instructions": "1) Read the user's message.\n2) Use WordCountTool to compute the number of words in the user's message.\n3) Produce a single-sentence summary (one short sentence) of the message.\n4) Output the summary followed by ' (Word count: N)'.\nIf useful, you may also use EchoTool to validate the input before summarizing.",
         "metadata": {},
-        "model": "gpt-4o",
+        "model": "gpt-3.5-turbo",
         "name": "Summarizer",
         "object": "assistant",
         "tools": [
