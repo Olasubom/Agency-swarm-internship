@@ -1,12 +1,190 @@
 [
     {
-        "id": "asst_Lc0kOzCJFSY8wZn56vUNljkI",
-        "created_at": 1754708801,
+        "id": "asst_QlvgsDLq817dASpddRvuKYKK",
+        "created_at": 1754735509,
         "description": "Greet the user warmly then echo their text inline.",
         "instructions": "When you receive a user's message, return ONE final plain-text response that includes a short greeting and the user's text. Use the EchoTool if you want, but make sure the final assistant response looks exactly like:\n  Hello! You said: <original user text>\nDo NOT return JSON or separate staged outputs.",
         "metadata": {},
         "model": "gpt-3.5-turbo",
         "name": "Greeter",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "EchoTool",
+                    "description": "Correctly extracted `EchoTool` with all the required parameters with correct types",
+                    "parameters": {
+                        "properties": {
+                            "text": {
+                                "description": "The text to echo back.",
+                                "title": "Text",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "text"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Correctly extracted `SendMessage` with all the required parameters with correct types",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "enum": [
+                                    "Summarizer",
+                                    "Responder"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "recipient": {
+                                "$ref": "#/$defs/recipient",
+                                "description": "Summarizer: Produce a one-sentence summary and include word count using WordCountTool.\nResponder: repeats the questions back in verbatim\n"
+                            },
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
+                                "title": "My Primary Instructions",
+                                "type": "string"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions. Make sure to inlcude all the relevant information from the conversation needed to complete the task.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "A list of file IDs to be sent as attachments to this message. Only use this if you have the file ID that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "title": "Message Files"
+                            },
+                            "additional_instructions": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "Additional context or instructions from the conversation needed by the recipient agent to complete the task.",
+                                "title": "Additional Instructions"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.2,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0,
+        "reasoning_effort": null
+    },
+    {
+        "id": "asst_eUvr55ip1FjfTA7fcJzG7209",
+        "created_at": 1754735509,
+        "description": "Produce a one-sentence summary and include word count using WordCountTool.",
+        "instructions": "Do these steps and return ONE plain-text sentence:\n1) Use WordCountTool with parameter text=<the user's message> to compute N.\n2) Produce a single short summary sentence of the user's message.\n3) Append ' (Word count: N)' to that one sentence.\nImportant: do NOT return JSON or separate outputs \u2014 the final assistant reply MUST be a single sentence that contains the number. Example: 'Short summary here. (Word count: 9)'.",
+        "metadata": {},
+        "model": "gpt-3.5-turbo",
+        "name": "Summarizer",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "WordCountTool",
+                    "description": "Correctly extracted `WordCountTool` with all the required parameters with correct types",
+                    "parameters": {
+                        "properties": {
+                            "text": {
+                                "description": "Text to count words for",
+                                "title": "Text",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "text"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "EchoTool",
+                    "description": "Correctly extracted `EchoTool` with all the required parameters with correct types",
+                    "parameters": {
+                        "properties": {
+                            "text": {
+                                "description": "The text to echo back.",
+                                "title": "Text",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "text"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.2,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0,
+        "reasoning_effort": null
+    },
+    {
+        "id": "asst_6ZdpsMGDF8pTxudJKXdBwIMm",
+        "created_at": 1754735510,
+        "description": "repeats the questions back in verbatim",
+        "instructions": "Whenever you get any text, echo it exactly using EchoTool",
+        "metadata": {},
+        "model": "gpt-3.5-turbo",
+        "name": "Responder",
         "object": "assistant",
         "tools": [
             {
@@ -106,258 +284,7 @@
             }
         ],
         "response_format": "auto",
-        "temperature": 0.2,
-        "tool_resources": {
-            "code_interpreter": null,
-            "file_search": null
-        },
-        "top_p": 1.0,
-        "reasoning_effort": null
-    },
-    {
-        "id": "asst_lXN4RyryPYbrC72ISrXvWOoQ",
-        "created_at": 1754708802,
-        "description": "repeats the questions back in verbatim",
-        "instructions": "Whenever you get any text, echo it exactly using EchoTool",
-        "metadata": {},
-        "model": "gpt-3.5-turbo",
-        "name": "Responder",
-        "object": "assistant",
-        "tools": [
-            {
-                "function": {
-                    "name": "EchoTool",
-                    "description": "Correctly extracted `EchoTool` with all the required parameters with correct types",
-                    "parameters": {
-                        "properties": {
-                            "text": {
-                                "description": "The text to echo back.",
-                                "title": "Text",
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "text"
-                        ],
-                        "type": "object"
-                    },
-                    "strict": false
-                },
-                "type": "function"
-            },
-            {
-                "function": {
-                    "name": "SendMessage",
-                    "description": "Correctly extracted `SendMessage` with all the required parameters with correct types",
-                    "parameters": {
-                        "$defs": {
-                            "recipient": {
-                                "enum": [
-                                    "Greeter"
-                                ],
-                                "title": "recipient",
-                                "type": "string"
-                            }
-                        },
-                        "properties": {
-                            "recipient": {
-                                "$ref": "#/$defs/recipient",
-                                "description": "Greeter: Greet the user warmly then echo their text inline.\n"
-                            },
-                            "my_primary_instructions": {
-                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
-                                "title": "My Primary Instructions",
-                                "type": "string"
-                            },
-                            "message": {
-                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions. Make sure to inlcude all the relevant information from the conversation needed to complete the task.",
-                                "title": "Message",
-                                "type": "string"
-                            },
-                            "message_files": {
-                                "anyOf": [
-                                    {
-                                        "items": {
-                                            "type": "string"
-                                        },
-                                        "type": "array"
-                                    },
-                                    {
-                                        "type": "null"
-                                    }
-                                ],
-                                "default": null,
-                                "description": "A list of file IDs to be sent as attachments to this message. Only use this if you have the file ID that starts with 'file-'.",
-                                "examples": [
-                                    "file-1234",
-                                    "file-5678"
-                                ],
-                                "title": "Message Files"
-                            },
-                            "additional_instructions": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "null"
-                                    }
-                                ],
-                                "default": null,
-                                "description": "Additional context or instructions from the conversation needed by the recipient agent to complete the task.",
-                                "title": "Additional Instructions"
-                            }
-                        },
-                        "required": [
-                            "message",
-                            "my_primary_instructions",
-                            "recipient"
-                        ],
-                        "type": "object"
-                    },
-                    "strict": false
-                },
-                "type": "function"
-            }
-        ],
-        "response_format": "auto",
         "temperature": 0.0,
-        "tool_resources": {
-            "code_interpreter": null,
-            "file_search": null
-        },
-        "top_p": 1.0,
-        "reasoning_effort": null
-    },
-    {
-        "id": "asst_ZycEDWFbBohHYZKtfb3v8Ujx",
-        "created_at": 1754708803,
-        "description": "Produce a one-sentence summary and include word count using WordCountTool.",
-        "instructions": "1) Read the user's message.\n2) Use WordCountTool to compute the number of words in the user's message.\n3) Produce a single-sentence summary (one short sentence) of the message.\n4) Output the summary followed by ' (Word count: N)'.\nIf useful, you may also use EchoTool to validate the input before summarizing.",
-        "metadata": {},
-        "model": "gpt-3.5-turbo",
-        "name": "Summarizer",
-        "object": "assistant",
-        "tools": [
-            {
-                "function": {
-                    "name": "WordCountTool",
-                    "description": "Correctly extracted `WordCountTool` with all the required parameters with correct types",
-                    "parameters": {
-                        "properties": {
-                            "text": {
-                                "description": "Text to count words for",
-                                "title": "Text",
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "text"
-                        ],
-                        "type": "object"
-                    },
-                    "strict": false
-                },
-                "type": "function"
-            },
-            {
-                "function": {
-                    "name": "EchoTool",
-                    "description": "Correctly extracted `EchoTool` with all the required parameters with correct types",
-                    "parameters": {
-                        "properties": {
-                            "text": {
-                                "description": "The text to echo back.",
-                                "title": "Text",
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "text"
-                        ],
-                        "type": "object"
-                    },
-                    "strict": false
-                },
-                "type": "function"
-            },
-            {
-                "function": {
-                    "name": "SendMessage",
-                    "description": "Correctly extracted `SendMessage` with all the required parameters with correct types",
-                    "parameters": {
-                        "$defs": {
-                            "recipient": {
-                                "enum": [
-                                    "Responder"
-                                ],
-                                "title": "recipient",
-                                "type": "string"
-                            }
-                        },
-                        "properties": {
-                            "recipient": {
-                                "$ref": "#/$defs/recipient",
-                                "description": "Responder: repeats the questions back in verbatim\n"
-                            },
-                            "my_primary_instructions": {
-                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
-                                "title": "My Primary Instructions",
-                                "type": "string"
-                            },
-                            "message": {
-                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions. Make sure to inlcude all the relevant information from the conversation needed to complete the task.",
-                                "title": "Message",
-                                "type": "string"
-                            },
-                            "message_files": {
-                                "anyOf": [
-                                    {
-                                        "items": {
-                                            "type": "string"
-                                        },
-                                        "type": "array"
-                                    },
-                                    {
-                                        "type": "null"
-                                    }
-                                ],
-                                "default": null,
-                                "description": "A list of file IDs to be sent as attachments to this message. Only use this if you have the file ID that starts with 'file-'.",
-                                "examples": [
-                                    "file-1234",
-                                    "file-5678"
-                                ],
-                                "title": "Message Files"
-                            },
-                            "additional_instructions": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "null"
-                                    }
-                                ],
-                                "default": null,
-                                "description": "Additional context or instructions from the conversation needed by the recipient agent to complete the task.",
-                                "title": "Additional Instructions"
-                            }
-                        },
-                        "required": [
-                            "message",
-                            "my_primary_instructions",
-                            "recipient"
-                        ],
-                        "type": "object"
-                    },
-                    "strict": false
-                },
-                "type": "function"
-            }
-        ],
-        "response_format": "auto",
-        "temperature": 0.2,
         "tool_resources": {
             "code_interpreter": null,
             "file_search": null

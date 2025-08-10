@@ -14,11 +14,10 @@ set_openai_key(key)
 
 flows = [
     greeter,
-    [greeter, responder],
-    [responder, summarizer],
-    [summarizer, greeter],
+    [greeter, summarizer],  # greeter goes straight to summarizer
+    [summarizer, responder],
+    [responder, greeter],
 ]
-
 agency = Agency(
     flows,
     shared_instructions="",
@@ -31,6 +30,11 @@ while True:
     if user_message.lower() == "exit":
         print("Exiting the swarm.")
         break
+    # If user explicitly asks to summarize, call summarizer directly:
+    if "summarize" in user_message.lower() or user_message.lower().startswith("/sum"):
+        reply = agency.get_completion(user_message, recipient_agent=summarizer)
+        print("Summarizer:", reply)
+        continue
 
     reply = agency.get_completion(user_message, recipient_agent=greeter)
     print("Swarm:", reply)

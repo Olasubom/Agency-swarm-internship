@@ -9,7 +9,6 @@ class EchoTool(BaseTool):
     )    
 
     def run(self) -> str:
-        print(f"[EchoTool.run] called with text={self.text!r}")
         return f"You said: {self.text}"
 
 class WordCountTool(BaseTool):
@@ -20,5 +19,5 @@ class WordCountTool(BaseTool):
     )
 
     def run(self) -> int:
-        print(f"[WordCountTool.run] called with text={self.text!r}")
+        print("[Summarizer] running with:", self.text)
         return len(self.text.split())
