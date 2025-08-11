@@ -10,14 +10,13 @@ class EchoTool(BaseTool):
 
     def run(self) -> str:
         return f"You said: {self.text}"
-
+    
 class WordCountTool(BaseTool):
-    # A tool that counts the number of words in the provided text.
+
     text: str = Field(
         ...,
-        description="Text to count words for"
+    description="Text to count words for"
     )
-
+    # A tool that counts the number of words in the provided text.
     def run(self) -> int:
-        print(f"[Summarizer] running with: {self.text}")
         return len(self.text.split())

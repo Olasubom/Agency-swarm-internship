@@ -1,0 +1,14 @@
+Swarm is running...Type 'exit' to stop.
+Prefix a message with '/sum ' to skip router and call summarizer directly.
+You: Hello
+[Router decided] GREETER -> forwarding to Greeter
+Greeter: Hello! You said: Hello
+You: Can you repeat this: I love code
+[Router decided] RESPONDER -> forwarding to Responder
+Responder: I have echoed back your text: "I love code"
+You: Summarize — this is a long sentence to test word count
+[Router decided] SUMMARIZER -> forwarding to Summarizer
+Summarizer: This is a long sentence to test word count. (Word count: 11)
+You: /sum Hello world
+Summarizer: Hello world. (Word count: 2)
+You: 
