@@ -58,6 +58,7 @@ router = Agent(
         "Do not return any extra text or punctuation. If unsure return GREETER."
     ),
     model="gpt-3.5-turbo",
+    tools=[],
     instructions=(
         "You are a routing assistant. inspect the user's message and return ONE token only \n"
         "- GREETER: for simple greetings, small talk, or casual hello messages.\n"
