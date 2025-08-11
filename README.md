@@ -61,7 +61,7 @@ Added a small conditional in run_swarm.py to forward the original user message t
         continue
 
 
-### Agency Swarm Internship - Day 3
+# Agency Swarm Internship - Day 3
 
 ## files
 - my_agents.py -> greeter, responder, summarizer , router agents
